@@ -1,0 +1,26 @@
+// tile intersect test
+/usr/lib/anaconda/bin/python dataRequest.py '{"data":["biomassLI"],"email":"jstnbraaten@gmail.com","polyPath":"\/data\/vectors\/vis\/conus_ard_grid_epsg5070.geojson","polyKey":"ARD_tile","polyValue":"h03v04"}'
+
+fileName = 
+year = 1990
+cmd = "/usr/lib/anaconda/bin/gdalinfo /data/visDataRequests/000026/waorca_biomass_ARD_tile_h03v04.tif"
+p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)        
+output, err = p.communicate()
+lines = output.split('\n')
+for i, line in enumerate(lines):
+	if line[0:6] == 'Files:':
+		lines[i] = 'Files: '+os.path.basename(fileName)
+	if line[0:4] == 'Band':
+		l = lines[i+1]+'\n  Year='+str(year)
+		lines[i+1] = l
+		year += 1
+
+
+/data/visDataRequests/000025/waorca_biomass_ARD_tile_h03v04.tif'
+
+
+// no tile intersect test
+
+
+
+
